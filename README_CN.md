@@ -108,8 +108,8 @@ A: 请检查：
 
 ---
 
-📧 **技术支持**：postman-genius-support@example.com
-🐛 **问题反馈**：https://github.com/yourrepo/issues
+📧 **技术支持**：[GitHub](https://github.com/KelvinTee58/node-postman-genius)
+🐛 **问题反馈**：https://github.com/KelvinTee58/node-postman-genius/issues
 📜 **更新日志**：参见 CHANGELOG.md
 
 ---
