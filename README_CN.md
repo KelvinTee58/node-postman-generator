@@ -1,5 +1,21 @@
 # Postman Genius 使用文档 | [English](README.md)
 
+## 🧠 项目概述
+
+**Postman Genius** 是专为 Express.js 开发者打造的智能转换工具，通过一条 CLI 指令自动完成以下工作：
+
+🔄 Express 路由 → 📦 Postman 集合 → 🚀 一键调试
+
+## ✨ 核心优势
+
+- **全自动转换** - 精准识别路由文件中的 app.get/post/put/delete 等配置
+- **参数智能映射**
+  - ✅ 路径参数 /users/:id → Postman 变量 {{id}}
+  - ✅ 查询参数 ?page=1 → Postman Query 面板自动填充
+- **工程化支持**
+  - 🧩 支持多路由文件批量处理
+  - 📁 输出标准 Postman v2.1 格式
+
 ## 📦 安装指南
 
 ### 全局安装（推荐）
@@ -91,11 +107,10 @@ src/
 
 3. **一键导入功能**
    将生成的 JSON 文件导入 Postman 可实现：
-   ✅ 自动生成完整 API 集合结构
 
-   ✅ 免除手动创建请求的繁琐操作
-
-   ✅ 完整保留参数定义和注释说明
+- ✅ 自动生成完整 API 集合结构
+- ✅ 免除手动创建请求的繁琐操作
+- ✅ 完整保留参数定义和注释说明
 
 ## ⚠️ 注意事项
 
@@ -120,14 +135,6 @@ A: 请检查：
 
 ---
 
-📧 **技术支持**：[GitHub](https://github.com/KelvinTee58/node-postman-genius)
-
-🐛 **问题反馈**：https://github.com/KelvinTee58/node-postman-genius/issues
-
-📜 **更新日志**：参见 CHANGELOG.md
-
----
-
-```
-
-```
+- 📧 **技术支持**：[GitHub](https://github.com/KelvinTee58/node-postman-genius)
+- 🐛 **问题反馈**：https://github.com/KelvinTee58/node-postman-genius/issues
+- 📜 **更新日志**：参见 CHANGELOG.md

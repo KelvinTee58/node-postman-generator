@@ -1,12 +1,30 @@
 # Postman Genius Documentation | [中文](README_CN.md)
 
+## 🧠 Project Overview
+
+**Postman Genius** is an intelligent conversion tool designed for Express.js developers, automating the entire workflow with a single CLI command:
+
+🔄 Express Routes → 📦 Postman Collection → 🚀 One-Click Debugging
+
+## ✨ Core Features
+
+- **Fully Automated Conversion** - Accurately identifies route configurations like app.get/post/put/delete
+- **Intelligent Parameter Mapping**
+  - ✅ Path parameters /users/:id → Postman variables {{id}}
+  - ✅ Query parameters ?page=1 → Auto-populates in Postman Query panel
+- **Engineering Support**
+  - 🧩 Batch processing of multiple route files
+  - 📁 Outputs standard Postman v2.1 format
+
+````
+
 ## 📦 Installation
 
 ### Global Install (Recommended)
 
 ```bash
 npm install -g postman-genius
-```
+````
 
 ### Project Install
 
@@ -92,11 +110,9 @@ src/
 3. **One-click Import**
    Simply import the generated JSON file in Postman to:
 
-   ✅ Get full API collection structure
-
-   ✅ Avoid manual endpoint setup
-
-   ✅ Preserve all parameter definitions
+- ✅ Get full API collection structure
+- ✅ Avoid manual endpoint setup
+- ✅ Preserve all parameter definitions
 
 ## ⚠️ Important Notes
 
@@ -121,18 +137,6 @@ A: Verify:
 
 ---
 
-📧 **Support**: [GitHub](https://github.com/KelvinTee58/node-postman-genius)
-
-🐛 **Issues**: https://github.com/KelvinTee58/node-postman-genius/issues
-
-📜 **Changelog**: See CHANGELOG.md
-
----
-
-```
-
-```
-
-```
-
-```
+- 📧 **Support**: [GitHub](https://github.com/KelvinTee58/node-postman-genius)
+- 🐛 **Issues**: https://github.com/KelvinTee58/node-postman-genius/issues
+- 📜 **Changelog**: See CHANGELOG.md
