@@ -16,15 +16,13 @@
   - 🧩 Batch processing of multiple route files
   - 📁 Outputs standard Postman v2.1 format
 
-````
-
 ## 📦 Installation
 
 ### Global Install (Recommended)
 
 ```bash
 npm install -g postman-genius
-````
+```
 
 ### Project Install
 

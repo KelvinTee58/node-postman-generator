@@ -1,6 +1,6 @@
 {
   "name": "node-postman-genius",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "📦 CLI tool that automatically converts Express.js routes to Postman collections - handles path/query/body params, and generates ready-to-import JSON with route config.",
   "main": "src/index.js",
   "bin": {
