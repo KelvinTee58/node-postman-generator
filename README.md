@@ -85,6 +85,19 @@ src/
 │   └── order.js
 ```
 
+2. **Generated File Example**
+   View sample output:
+   [generator.test.json](https://github.com/KelvinTee58/node-postman-genius/blob/main/test/generator.test.json)
+
+3. **One-click Import**
+   Simply import the generated JSON file in Postman to:
+
+   ✅ Get full API collection structure
+
+   ✅ Avoid manual endpoint setup
+
+   ✅ Preserve all parameter definitions
+
 ## ⚠️ Important Notes
 
 1. Must use JSDoc format (/\*\* \*/)
@@ -115,3 +128,11 @@ A: Verify:
 📜 **Changelog**: See CHANGELOG.md
 
 ---
+
+```
+
+```
+
+```
+
+```
