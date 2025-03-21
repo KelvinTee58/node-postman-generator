@@ -1,0 +1,43 @@
+{
+  "name": "node-postman-genius",
+  "version": "2.0.0",
+  "description": "📦 Express 路由转 Postman Collection 的工具",
+  "main": "src/index.js",
+  "bin": {
+    "postman-genius": "./bin/cli.js",
+    "postman-genius-test": "./bin/cli-new.js"
+  },
+  "scripts": {
+    "start": "node bin/test.js",
+    "clitest": "node bin/test.js -i ./test/routes -o ./test/generator.test.json",
+    "prepare": "chmod +x ./bin/cli.js"
+  },
+  "dependencies": {
+    "acorn": "^8.14.1",
+    "acorn-walk": "^8.3.4",
+    "commander": "^10.0.1",
+    "faker": "^5.5.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.35.0",
+    "nodemon": "^3.0.0"
+  },
+  "keywords": [
+    "postman",
+    "express",
+    "api-generator",
+    "nodejs",
+    "cli-tool"
+  ],
+  "author": "kevinjzheng58",
+  "license": "MIT",
+  "files": [
+    "bin/",
+    "src/",
+    "config/",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

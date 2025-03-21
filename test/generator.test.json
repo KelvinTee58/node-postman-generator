@@ -1,0 +1,149 @@
+{
+  "info": {
+    "name": "Generated API Collection",
+    "description": "Automatically generated from route files",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "user Routes",
+      "description": "API endpoints in user.js",
+      "item": [
+        {
+          "name": "GetUserList",
+          "request": {
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "url": {
+              "raw": "{{base_url}}/User/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "user"
+              ],
+              "query": []
+            },
+            "description": "获取用户列表"
+          }
+        },
+        {
+          "name": "CreateUser",
+          "request": {
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "url": {
+              "raw": "{{base_url}}/User/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "user"
+              ],
+              "query": []
+            },
+            "description": "创建用户"
+          }
+        }
+      ]
+    },
+    {
+      "name": "user2 Routes",
+      "description": "API endpoints in user2.js",
+      "item": [
+        {
+          "name": "GetUserList333",
+          "request": {
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "url": {
+              "raw": "{{base_url}}/User2/user2",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "user2"
+              ],
+              "query": []
+            },
+            "description": "获取用户列表"
+          }
+        },
+        {
+          "name": "CreateUser333",
+          "request": {
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "url": {
+              "raw": "{{base_url}}/User2/user3",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "user3"
+              ],
+              "query": []
+            },
+            "description": "创建用户"
+          }
+        }
+      ]
+    }
+  ]
+}
