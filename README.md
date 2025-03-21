@@ -109,7 +109,9 @@ A: Verify:
 ---
 
 📧 **Support**: [GitHub](https://github.com/KelvinTee58/node-postman-genius)
+
 🐛 **Issues**: https://github.com/KelvinTee58/node-postman-genius/issues
+
 📜 **Changelog**: See CHANGELOG.md
 
 ---
