@@ -1,8 +1,8 @@
-# Postman Genius 使用文档 | [English](README.md)
+# Postman Generator 使用文档 | [English](README.md)
 
 ## 🧠 项目概述
 
-**Postman Genius** 是专为 Express.js 开发者打造的智能转换工具，通过一条 CLI 指令自动完成以下工作：
+**Postman Generator** 是专为 Express.js 开发者打造的智能转换工具，通过一条 CLI 指令自动完成以下工作：
 
 🔄 Express 路由 → 📦 Postman 集合 → 🚀 一键调试
 
@@ -21,13 +21,13 @@
 ### 全局安装（推荐）
 
 ```bash
-npm install -g postman-genius
+npm install -g postman-generator
 ```
 
 ### 项目内安装
 
 ```bash
-npm install postman-genius --save-dev
+npm install postman-generator --save-dev
 ```
 
 ## 🚀 快速开始
@@ -35,7 +35,7 @@ npm install postman-genius --save-dev
 ### 基础使用
 
 ```bash
-npx postman-genius -i ./routes -o ./postman/collection2025.json
+npx postman-generator -i ./routes -o ./postman/collection2025.json
 ```
 
 ## 🔧 配置选项
@@ -103,7 +103,7 @@ src/
 
 2. **生成文件示例**
    查看测试用例文件：
-   [generator.test.json](https://github.com/KelvinTee58/node-postman-genius/blob/main/test/generator.test.json)
+   [generator.test.json](https://github.com/KelvinTee58/node-postman-generator/blob/main/test/generator.test.json)
 
 3. **一键导入功能**
    将生成的 JSON 文件导入 Postman 可实现：
@@ -135,6 +135,6 @@ A: 请检查：
 
 ---
 
-- 📧 **技术支持**：[GitHub](https://github.com/KelvinTee58/node-postman-genius)
-- 🐛 **问题反馈**：https://github.com/KelvinTee58/node-postman-genius/issues
+- 📧 **技术支持**：[GitHub](https://github.com/KelvinTee58/node-postman-generator)
+- 🐛 **问题反馈**：https://github.com/KelvinTee58/node-postman-generator/issues
 - 📜 **更新日志**：参见 CHANGELOG.md

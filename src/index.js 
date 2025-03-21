@@ -6,7 +6,7 @@ class PostmanGenerator {
   constructor(options) {
 
     // 读取默认配置文件
-    const configPath = path.join(__dirname, '../config/node-postman-genius.json');
+    const configPath = path.join(__dirname, '../config/node-postman-generator.json');
     const defaultConfig = fs.existsSync(configPath) ? require(configPath) : {};
 
     this.options = {

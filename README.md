@@ -1,8 +1,8 @@
-# Postman Genius Documentation | [中文](README_CN.md)
+# Postman Generator Documentation | [中文](README_CN.md)
 
 ## 🧠 Project Overview
 
-**Postman Genius** is an intelligent conversion tool designed for Express.js developers, automating the entire workflow with a single CLI command:
+**Postman Generator** is an intelligent conversion tool designed for Express.js developers, automating the entire workflow with a single CLI command:
 
 🔄 Express Routes → 📦 Postman Collection → 🚀 One-Click Debugging
 
@@ -21,13 +21,13 @@
 ### Global Install (Recommended)
 
 ```bash
-npm install -g postman-genius
+npm install -g postman-generator
 ```
 
 ### Project Install
 
 ```bash
-npm install postman-genius --save-dev
+npm install postman-generator --save-dev
 ```
 
 ## 🚀 Quick Start
@@ -35,7 +35,7 @@ npm install postman-genius --save-dev
 ### Basic Usage
 
 ```bash
-npx postman-genius -i ./routes -o ./postman/collection2025.json
+npx postman-generator -i ./routes -o ./postman/collection2025.json
 ```
 
 ## 🔧 Configuration Options
@@ -103,7 +103,7 @@ src/
 
 2. **Generated File Example**
    View sample output:
-   [generator.test.json](https://github.com/KelvinTee58/node-postman-genius/blob/main/test/generator.test.json)
+   [generator.test.json](https://github.com/KelvinTee58/node-postman-generator/blob/main/test/generator.test.json)
 
 3. **One-click Import**
    Simply import the generated JSON file in Postman to:
@@ -135,6 +135,6 @@ A: Verify:
 
 ---
 
-- 📧 **Support**: [GitHub](https://github.com/KelvinTee58/node-postman-genius)
-- 🐛 **Issues**: https://github.com/KelvinTee58/node-postman-genius/issues
+- 📧 **Support**: [GitHub](https://github.com/KelvinTee58/node-postman-generator)
+- 🐛 **Issues**: https://github.com/KelvinTee58/node-postman-generator/issues
 - 📜 **Changelog**: See CHANGELOG.md

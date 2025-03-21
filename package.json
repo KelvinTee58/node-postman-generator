@@ -1,11 +1,11 @@
 {
-  "name": "node-postman-genius",
+  "name": "node-postman-generator",
   "version": "2.1.1",
   "description": "📦 CLI tool that automatically converts Express.js routes to Postman collections - handles path/query/body params, and generates ready-to-import JSON with route config.",
   "main": "src/index.js",
   "bin": {
-    "postman-genius": "./bin/cli.js",
-    "postman-genius-test": "./bin/cli-new.js"
+    "postman-generator": "./bin/cli.js",
+    "postman-generator-test": "./bin/cli-new.js"
   },
   "scripts": {
     "start": "node bin/test.js",
@@ -42,10 +42,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/KelvinTee58/node-postman-genius"
+    "url": "git+https://github.com/KelvinTee58/node-postman-generator"
   },
   "bugs": {
-    "url": "https://github.com/KelvinTee58/node-postman-genius/issues"
+    "url": "https://github.com/KelvinTee58/node-postman-generator/issues"
   },
-  "homepage": "https://github.com/KelvinTee58/node-postman-genius#readme"
+  "homepage": "https://github.com/KelvinTee58/node-postman-generator#readme"
 }

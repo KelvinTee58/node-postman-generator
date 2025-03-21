@@ -6,7 +6,7 @@ const path = require('path');
 const PostmanGenerator = require('../src/generator');
 
 // 读取配置文件
-const configPath = path.resolve(__dirname, '../config/node-postman-genius.json');
+const configPath = path.resolve(__dirname, '../config/node-postman-generator.json');
 const defaultConfig = fs.existsSync(configPath)
   ? JSON.parse(fs.readFileSync(configPath, 'utf8'))
   : {};
