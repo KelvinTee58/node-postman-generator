@@ -8,8 +8,8 @@
     "postman-generator-test": "./bin/cli-new.js"
   },
   "scripts": {
-    "start": "node bin/test.js",
-    "clitest": "node bin/test.js -i ./test/routes -o ./test/generator.test.json",
+    "start": "node bin/cli.js",
+    "test": "node bin/cli.js -i ./test/routes -o ./test/generator.test.json",
     "prepare": "chmod +x ./bin/cli.js"
   },
   "dependencies": {

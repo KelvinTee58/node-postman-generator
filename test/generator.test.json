@@ -6,11 +6,11 @@
   },
   "item": [
     {
-      "name": "user Routes",
-      "description": "API endpoints in user.js",
+      "name": "order Routes",
+      "description": "API endpoints in order.js",
       "item": [
         {
-          "name": "GetUserList",
+          "name": "Order",
           "request": {
             "method": "GET",
             "auth": {
@@ -26,15 +26,20 @@
             "header": [],
             "body": {
               "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
               "raw": "{}"
             },
             "url": {
-              "raw": "{{base_url}}/User/user",
+              "raw": "{{base_url}}/order/order",
               "host": [
                 "{{base_url}}"
               ],
               "path": [
-                "user"
+                "order"
               ],
               "query": []
             },
@@ -42,7 +47,7 @@
           }
         },
         {
-          "name": "CreateUser",
+          "name": "BodyTest",
           "request": {
             "method": "POST",
             "auth": {
@@ -58,29 +63,34 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{}"
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"name\": \"quo\",\n  \"phone\": \"123456789\",\n  \"sex\": \"nulla\"\n}"
             },
             "url": {
-              "raw": "{{base_url}}/User/user",
+              "raw": "{{base_url}}/order/orderBodyTest",
               "host": [
                 "{{base_url}}"
               ],
               "path": [
-                "user"
+                "orderBodyTest"
               ],
               "query": []
             },
-            "description": "创建用户"
+            "description": ""
           }
         }
       ]
     },
     {
-      "name": "user2 Routes",
-      "description": "API endpoints in user2.js",
+      "name": "user Routes",
+      "description": "API endpoints in user.js",
       "item": [
         {
-          "name": "GetUserList333",
+          "name": "User",
           "request": {
             "method": "GET",
             "auth": {
@@ -96,15 +106,20 @@
             "header": [],
             "body": {
               "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
               "raw": "{}"
             },
             "url": {
-              "raw": "{{base_url}}/User2/user2",
+              "raw": "{{base_url}}/user/user",
               "host": [
                 "{{base_url}}"
               ],
               "path": [
-                "user2"
+                "user"
               ],
               "query": []
             },
@@ -112,7 +127,7 @@
           }
         },
         {
-          "name": "CreateUser333",
+          "name": "paramsTestDefault",
           "request": {
             "method": "POST",
             "auth": {
@@ -128,19 +143,169 @@
             "header": [],
             "body": {
               "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
               "raw": "{}"
             },
             "url": {
-              "raw": "{{base_url}}/User2/user3",
+              "raw": "{{base_url}}/user/paramsTestDefault",
               "host": [
                 "{{base_url}}"
               ],
               "path": [
-                "user3"
+                "paramsTestDefault"
               ],
-              "query": []
+              "query": [
+                {
+                  "key": "name",
+                  "value": "vel",
+                  "description": "用户名"
+                }
+              ]
             },
-            "description": "创建用户"
+            "description": ""
+          }
+        },
+        {
+          "name": "paramsTestHasDefaultValue",
+          "request": {
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{}"
+            },
+            "url": {
+              "raw": "{{base_url}}/user/paramsTestHasDefaultValue",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "paramsTestHasDefaultValue"
+              ],
+              "query": [
+                {
+                  "key": "name",
+                  "value": "Mike",
+                  "description": "用户名"
+                }
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "paramsTestNotDefaultValue",
+          "request": {
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{}"
+            },
+            "url": {
+              "raw": "{{base_url}}/user/paramsTestNotDefaultValue",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "paramsTestNotDefaultValue"
+              ],
+              "query": [
+                {
+                  "key": "name",
+                  "value": "sed",
+                  "description": "用户名"
+                }
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "userGroupTest",
+          "request": {
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{}"
+            },
+            "url": {
+              "raw": "{{base_url}}/user/paramsGroupTest",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "paramsGroupTest"
+              ],
+              "query": [
+                {
+                  "key": "name",
+                  "value": "aut",
+                  "description": "用户名"
+                },
+                {
+                  "key": "phone",
+                  "value": "123456789",
+                  "description": "手机号"
+                },
+                {
+                  "key": "sex",
+                  "value": "at",
+                  "description": "性别"
+                }
+              ]
+            },
+            "description": "获取用户列表"
           }
         }
       ]
