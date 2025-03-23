@@ -50,6 +50,17 @@ npx postman-generator -i ./routes -o ./postman/collection2025.json
 
 ## 📝 Annotation Standards
 
+### JSDoc Reference
+
+```
+@apiParam {Number} name Description
+@apiParam {Number} [name=defaultValue]
+@apiParam {String} [name] Description
+
+@apiParamGroup [[{String} name Description],[{String} [name=defaultValue] Description],[{String} [name] Description]]
+@apiBody [[{String} [name=defaultValue] Description],[{String} name Description],[{String} [name] Description]]
+```
+
 ### Basic Route Annotation
 
 ```javascript
@@ -57,8 +68,7 @@ npx postman-generator -i ./routes -o ./postman/collection2025.json
  * @api {get} /users Get user list
  * @apiGroup User
  * @apiParam {Number} [page=1] Page number
- * @apiHeader {String} X-Request-ID Request ID
- * @apiBody {Object} filter Filter conditions
+ * @apiBody [[{String} name username],[{String} [phone=123456789] phoneNumber],[{String} [gender] genderType]]
  */
 router.get("/users", getUserList);
 ```

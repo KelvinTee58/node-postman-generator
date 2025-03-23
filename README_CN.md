@@ -50,15 +50,25 @@ npx postman-generator -i ./routes -o ./postman/collection2025.json
 
 ## 📝 注释规范
 
+### JSDoc 参考
+
+```
+@apiParam {Number} name Description
+@apiParam {Number} [name=defaultValue]
+@apiParam {String} [name] Description
+
+@apiParamGroup [[{String} name Description],[{String} [name=defaultValue] Description],[{String} [name] Description]]
+@apiBody [[{String} [name=defaultValue] Description],[{String} name Description],[{String} [name] Description]]
+```
+
 ### 基础路由注释
 
 ```javascript
 /**
  * @api {get} /users 获取用户列表
  * @apiGroup User
- * @apiParam {Number} [page=1] 页码
- * @apiHeader {String} X-Request-ID 请求唯一标识
- * @apiBody {Object} filter 过滤条件
+ * @apiParam {Number} [page=1] 页面数
+ * @apiBody [[{String} name 用户名],[{String} [phone=123456789] 手机号],[{String} [gender] 性别类型]]
  */
 router.get("/users", getUserList);
 ```
