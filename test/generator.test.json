@@ -6,6 +6,160 @@
   },
   "item": [
     {
+      "name": "default Routes",
+      "description": "API endpoints in default.js",
+      "item": [
+        {
+          "name": "GET /a_get",
+          "request": {
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{}"
+            },
+            "url": {
+              "raw": "{{url}}/Default/a_get",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "a_get"
+              ],
+              "query": []
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /a_post",
+          "request": {
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{}"
+            },
+            "url": {
+              "raw": "{{url}}/Default/a_post",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "a_post"
+              ],
+              "query": []
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "PUT /a_put",
+          "request": {
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{}"
+            },
+            "url": {
+              "raw": "{{url}}/Default/a_put",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "a_put"
+              ],
+              "query": []
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "DELETE /a_delete",
+          "request": {
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{}"
+            },
+            "url": {
+              "raw": "{{url}}/Default/a_delete",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "a_delete"
+              ],
+              "query": []
+            },
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
       "name": "order Routes",
       "description": "API endpoints in order.js",
       "item": [
@@ -68,7 +222,7 @@
                   "language": "json"
                 }
               },
-              "raw": "{\n  \"name\": \"sed\",\n  \"phone\": \"123456789\",\n  \"sex\": \"enim\"\n}"
+              "raw": "{\n  \"name\": \"dicta\",\n  \"phone\": \"123456789\",\n  \"sex\": \"temporibus\"\n}"
             },
             "url": {
               "raw": "{{url}}/order/orderBodyTest",
@@ -161,7 +315,7 @@
               "query": [
                 {
                   "key": "name",
-                  "value": "natus",
+                  "value": "mollitia",
                   "description": "用户名"
                 }
               ]
@@ -247,7 +401,7 @@
               "query": [
                 {
                   "key": "name",
-                  "value": "ipsam",
+                  "value": "et",
                   "description": "用户名"
                 }
               ]
@@ -290,7 +444,7 @@
               "query": [
                 {
                   "key": "name",
-                  "value": "ut",
+                  "value": "sapiente",
                   "description": "用户名"
                 },
                 {
@@ -300,7 +454,7 @@
                 },
                 {
                   "key": "sex",
-                  "value": "error",
+                  "value": "sit",
                   "description": "性别"
                 }
               ]

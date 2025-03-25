@@ -91,7 +91,8 @@ class ExpressParser {
           );
 
           // 在这里解析注释，并存储在 parseInfo 中
-          const parseInfo = relatedComment ? parseComment(relatedComment.text) : {};
+          const parseInfo = parseComment(relatedComment?.text)
+
           routes.push({
             method,
             path,

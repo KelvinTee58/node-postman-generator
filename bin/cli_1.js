@@ -129,9 +129,8 @@ class PostmanGenerator {
             c.endLine <= routeLine &&
             c.text.includes('@api')
           );
-
           // 在这里解析注释，并存储在 parseInfo 中
-          const parseInfo = relatedComment ? that.parseComment(relatedComment.text) : {};
+          const parseInfo = that.parseComment(relatedComment?.text) ?? {}
 
           routes.push({
             method,
