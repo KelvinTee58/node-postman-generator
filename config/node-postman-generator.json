@@ -1,5 +1,6 @@
 {
   "routesPath": "./routes",
   "outputFile": "./postman/collection.json",
-  "baseUrl": "{{base_url}}"
+  "baseUrl": "{{base_url}}",
+  "collectionVersion": "postman2.1"
 }

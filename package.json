@@ -1,6 +1,6 @@
 {
   "name": "node-postman-generator",
-  "version": "2.3.1",
+  "version": "2.4.0",
   "description": "📦 CLI tool that automatically converts Express.js routes to Postman collections - handles path/query/body params, and generates ready-to-import JSON with route config.",
   "main": "src/index.js",
   "bin": {
@@ -9,7 +9,8 @@
   },
   "scripts": {
     "start": "node bin/cli.js",
-    "test": "node bin/cli.js -i ./test/routes -o ./test/generator.test.json",
+    "test-1": "node bin/cli_1.js -i ./test/routes -o ./test/generator.test.json",
+    "test": "node bin/cli.js -i ./test/routes -o ./test/generator.test.json -b {{url}}",
     "prepare": "chmod +x ./bin/cli.js"
   },
   "dependencies": {
@@ -23,10 +24,15 @@
     "nodemon": "^3.0.0"
   },
   "keywords": [
+    "postman-collection",
     "postman",
+    "collection",
+    "generator",
+    "nodejs",
+    "api",
+    "sdk",
     "express",
     "api-generator",
-    "nodejs",
     "cli-tool"
   ],
   "author": "kevinjzheng58",

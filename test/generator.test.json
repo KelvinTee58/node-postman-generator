@@ -34,9 +34,9 @@
               "raw": "{}"
             },
             "url": {
-              "raw": "{{base_url}}/order/order",
+              "raw": "{{url}}/order/order",
               "host": [
-                "{{base_url}}"
+                "{{url}}"
               ],
               "path": [
                 "order"
@@ -68,12 +68,12 @@
                   "language": "json"
                 }
               },
-              "raw": "{\n  \"name\": \"quo\",\n  \"phone\": \"123456789\",\n  \"sex\": \"nulla\"\n}"
+              "raw": "{\n  \"name\": \"odio\",\n  \"phone\": \"123456789\",\n  \"sex\": \"magni\"\n}"
             },
             "url": {
-              "raw": "{{base_url}}/order/orderBodyTest",
+              "raw": "{{url}}/order/orderBodyTest",
               "host": [
-                "{{base_url}}"
+                "{{url}}"
               ],
               "path": [
                 "orderBodyTest"
@@ -114,9 +114,9 @@
               "raw": "{}"
             },
             "url": {
-              "raw": "{{base_url}}/user/user",
+              "raw": "{{url}}/user/user",
               "host": [
-                "{{base_url}}"
+                "{{url}}"
               ],
               "path": [
                 "user"
@@ -151,9 +151,9 @@
               "raw": "{}"
             },
             "url": {
-              "raw": "{{base_url}}/user/paramsTestDefault",
+              "raw": "{{url}}/user/paramsTestDefault",
               "host": [
-                "{{base_url}}"
+                "{{url}}"
               ],
               "path": [
                 "paramsTestDefault"
@@ -161,7 +161,7 @@
               "query": [
                 {
                   "key": "name",
-                  "value": "vel",
+                  "value": "aliquam",
                   "description": "用户名"
                 }
               ]
@@ -194,9 +194,9 @@
               "raw": "{}"
             },
             "url": {
-              "raw": "{{base_url}}/user/paramsTestHasDefaultValue",
+              "raw": "{{url}}/user/paramsTestHasDefaultValue",
               "host": [
-                "{{base_url}}"
+                "{{url}}"
               ],
               "path": [
                 "paramsTestHasDefaultValue"
@@ -237,9 +237,9 @@
               "raw": "{}"
             },
             "url": {
-              "raw": "{{base_url}}/user/paramsTestNotDefaultValue",
+              "raw": "{{url}}/user/paramsTestNotDefaultValue",
               "host": [
-                "{{base_url}}"
+                "{{url}}"
               ],
               "path": [
                 "paramsTestNotDefaultValue"
@@ -247,7 +247,7 @@
               "query": [
                 {
                   "key": "name",
-                  "value": "sed",
+                  "value": "doloremque",
                   "description": "用户名"
                 }
               ]
@@ -280,9 +280,9 @@
               "raw": "{}"
             },
             "url": {
-              "raw": "{{base_url}}/user/paramsGroupTest",
+              "raw": "{{url}}/user/paramsGroupTest",
               "host": [
-                "{{base_url}}"
+                "{{url}}"
               ],
               "path": [
                 "paramsGroupTest"
@@ -290,7 +290,7 @@
               "query": [
                 {
                   "key": "name",
-                  "value": "aut",
+                  "value": "distinctio",
                   "description": "用户名"
                 },
                 {
@@ -300,7 +300,7 @@
                 },
                 {
                   "key": "sex",
-                  "value": "at",
+                  "value": "facere",
                   "description": "性别"
                 }
               ]
