@@ -68,7 +68,7 @@
                   "language": "json"
                 }
               },
-              "raw": "{\n  \"name\": \"odio\",\n  \"phone\": \"123456789\",\n  \"sex\": \"magni\"\n}"
+              "raw": "{\n  \"name\": \"sed\",\n  \"phone\": \"123456789\",\n  \"sex\": \"enim\"\n}"
             },
             "url": {
               "raw": "{{url}}/order/orderBodyTest",
@@ -161,7 +161,7 @@
               "query": [
                 {
                   "key": "name",
-                  "value": "aliquam",
+                  "value": "natus",
                   "description": "用户名"
                 }
               ]
@@ -247,7 +247,7 @@
               "query": [
                 {
                   "key": "name",
-                  "value": "doloremque",
+                  "value": "ipsam",
                   "description": "用户名"
                 }
               ]
@@ -290,7 +290,7 @@
               "query": [
                 {
                   "key": "name",
-                  "value": "distinctio",
+                  "value": "ut",
                   "description": "用户名"
                 },
                 {
@@ -300,7 +300,7 @@
                 },
                 {
                   "key": "sex",
-                  "value": "facere",
+                  "value": "error",
                   "description": "性别"
                 }
               ]

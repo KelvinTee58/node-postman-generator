@@ -127,7 +127,8 @@ src/
 1. Must use JSDoc format (/\*\* \*/)
 2. Route path parameters require colon syntax (:param)
 3. Skip tags must be placed in comment block's first line
-4. Config file priority > CLI parameters
+4. Config file priority < CLI parameters
+5. If you mix multiple Nodejs frameworks in a project, this tool may not handle them correctly.
 
 ## 🆘 FAQ
 

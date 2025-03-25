@@ -29,12 +29,24 @@ class Parser {
   detectFramework(code) {
     let framework = null;
     const ast = acorn.parse(code, { ecmaVersion: 2020 }); // 根据您的项目配置 ecmaVersion
+    const parserDir = __dirname; // 获取当前目录 (src/parser)
 
     walk.simple(ast, {
       CallExpression(node) {
         if (node.callee.type === 'Identifier' && node.callee.name === 'require') {
           if (node.arguments.length > 0 && node.arguments[0].type === 'Literal') {
-            framework = node.arguments[0].value;
+            // framework = node.arguments[0].value;
+            const requiredModule = node.arguments[0].value;
+            const frameworkPath = path.join(parserDir, requiredModule);
+
+            // 检查是否存在同名文件夹
+            if (fs.existsSync(frameworkPath) && fs.statSync(frameworkPath).isDirectory()) {
+              const files = fs.readdirSync(frameworkPath); // 读取文件夹内容
+              if (files.length > 0) { // 检查文件夹是否非空
+                framework = requiredModule;
+                return; // 找到框架后立即停止遍历
+              }
+            }
           }
         }
       }
