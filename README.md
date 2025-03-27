@@ -2,7 +2,7 @@
 
 ## 🧠 Project Overview
 
-**Postman Generator** is an intelligent conversion tool designed for Express.js developers, automating the entire workflow with a single CLI command:
+**Postman Generator** is an intelligent conversion tool designed for Node.js developers, automating the entire workflow with a single CLI command:
 
 🔄 Express Routes → 📦 Postman Collection → 🚀 One-Click Debugging
 
@@ -140,9 +140,51 @@ A: Verify:
 2. Presence of @postman-skip tags
 3. Route annotation compliance
 
-### Q3: Supported frameworks?
+### Q2: Supported frameworks?
 
 - Express
+
+---
+
+## 🛠 Framework Adaptation Guide
+
+### Project Structure
+
+```
+project-root/
+├── bin/ # CLI Entry
+├── src/
+│ ├── builder/ # Postman Collection Builder
+│ ├── parser/ # Route Parser
+│ │ ├── index.js # Main Parser
+│ │ └── [framework]/ # Framework-specific Parsers
+│ └── index.js # Module Entry
+└── test/ # Test Cases
+```
+
+### Steps to Add New Framework
+
+1. **Create Parser Directory**  
+   Add new folder under `parser/` matching framework name (e.g. `koa/`)
+
+2. **Implement Core Files**
+
+   - `parser.js`: Route parsing logic
+   - `comment.js`: JSDoc comment processing
+
+3. **Auto-Detection Mechanism**  
+   System will automatically match parser when detecting `require("[framework-name]")`
+
+4. **Testing**  
+   Run `npm run test` to verify adaptation
+
+### Supporting Other Postman Versions
+
+1. **Add New Builder**  
+   Create new version generator in `builder/` (e.g. `postman3.0.js`)
+
+2. **Testing**  
+   Modify test files and run `npm run test` for verification
 
 ---
 
