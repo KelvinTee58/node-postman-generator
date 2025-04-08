@@ -222,7 +222,7 @@
                   "language": "json"
                 }
               },
-              "raw": "{\n  \"name\": \"dicta\",\n  \"phone\": \"123456789\",\n  \"sex\": \"temporibus\"\n}"
+              "raw": "{\n  \"name\": \"debitis\",\n  \"phone\": \"123456789\",\n  \"sex\": \"rem\"\n}"
             },
             "url": {
               "raw": "{{url}}/order/orderBodyTest",
@@ -315,7 +315,7 @@
               "query": [
                 {
                   "key": "name",
-                  "value": "mollitia",
+                  "value": "ratione",
                   "description": "用户名"
                 }
               ]
@@ -401,7 +401,7 @@
               "query": [
                 {
                   "key": "name",
-                  "value": "et",
+                  "value": "animi",
                   "description": "用户名"
                 }
               ]
@@ -444,7 +444,7 @@
               "query": [
                 {
                   "key": "name",
-                  "value": "sapiente",
+                  "value": "nesciunt",
                   "description": "用户名"
                 },
                 {
@@ -454,7 +454,7 @@
                 },
                 {
                   "key": "sex",
-                  "value": "sit",
+                  "value": "mollitia",
                   "description": "性别"
                 }
               ]

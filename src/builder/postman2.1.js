@@ -69,7 +69,6 @@ class Builder {
   }
 
   _buildRequestItem(route) {
-    // console.log('route :>> ', route);
     // 原buildCollection中单个请求的构建逻辑
     const { name, group, description, params, headers, body } = route.parseInfo;
 
