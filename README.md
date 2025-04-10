@@ -6,6 +6,8 @@
 
 🔄 Express Routes → 📦 Postman Collection → 🚀 One-Click Debugging
 
+If you think this project is helpful to you, I hope you can contribute a [star⭐](https://github.com/KelvinTee58/node-postman-generator)
+
 ## ✨ Core Features
 
 - **Fully Automated Conversion** - Accurately identifies route configurations like app.get/post/put/delete
@@ -240,3 +242,9 @@ project-root/
 - 📧 **Support**: [GitHub](https://github.com/KelvinTee58/node-postman-generator)
 - 🐛 **Issues**: https://github.com/KelvinTee58/node-postman-generator/issues
 - 📜 **Changelog**: See CHANGELOG.md
+
+## Contributors
+
+<a href="https://github.com/KelvinTee58/node-postman-generator/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=KelvinTee58/node-postman-generator" />
+</a>

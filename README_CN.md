@@ -6,6 +6,8 @@
 
 🔄 Express 路由 → 📦 Postman 集合 → 🚀 一键调试
 
+如果你觉得这个项目对你有帮助，希望你能贡献一个 [star⭐](https://github.com/KelvinTee58/node-postman-generator)
+
 ## ✨ 核心优势
 
 - **全自动转换** - 精准识别路由文件中的 app.get/post/put/delete 等配置
@@ -240,3 +242,9 @@ A: 请检查：
 - 📧 **技术支持**：[GitHub](https://github.com/KelvinTee58/node-postman-generator)
 - 🐛 **问题反馈**：https://github.com/KelvinTee58/node-postman-generator/issues
 - 📜 **更新日志**：参见 CHANGELOG.md
+
+## 贡献板
+
+<a href="https://github.com/KelvinTee58/node-postman-generator/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=KelvinTee58/node-postman-generator" />
+</a>
