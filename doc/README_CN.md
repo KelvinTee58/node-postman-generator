@@ -239,4 +239,4 @@ A: 请检查：
 
 - 📧 **技术支持**：[GitHub](https://github.com/KelvinTee58/node-postman-generator)
 - 🐛 **问题反馈**：https://github.com/KelvinTee58/node-postman-generator/issues
-- 📜 **更新日志**：参见 CHANGELOG.md
+- 📜 **更新日志**：参见 [CHANGELOG File](./CHANGELOG.md)

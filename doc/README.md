@@ -239,4 +239,4 @@ project-root/
 
 - 📧 **Support**: [GitHub](https://github.com/KelvinTee58/node-postman-generator)
 - 🐛 **Issues**: https://github.com/KelvinTee58/node-postman-generator/issues
-- 📜 **Changelog**: See CHANGELOG.md
+- 📜 **Changelog**: See [CHANGELOG File](./CHANGELOG.md)
