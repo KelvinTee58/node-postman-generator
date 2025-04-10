@@ -1,12 +1,10 @@
-# Postman Generator Documentation
+# Node Postman Generator Documentation
 
 ## 🧠 Project Overview
 
-**Postman Generator** is an intelligent conversion tool designed for Node.js developers, automating the entire workflow with a single CLI command:
+**Node Postman Generator** is an intelligent conversion tool designed for Node.js developers, automating the entire workflow with a single CLI command:
 
 🔄 Express Routes → 📦 Postman Collection → 🚀 One-Click Debugging
-
-If you think this project is helpful to you, I hope you can contribute a [star⭐](https://github.com/KelvinTee58/node-postman-generator)
 
 ## ✨ Core Features
 
@@ -242,9 +240,3 @@ project-root/
 - 📧 **Support**: [GitHub](https://github.com/KelvinTee58/node-postman-generator)
 - 🐛 **Issues**: https://github.com/KelvinTee58/node-postman-generator/issues
 - 📜 **Changelog**: See CHANGELOG.md
-
-## Contributors
-
-<a href="https://github.com/KelvinTee58/node-postman-generator/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=KelvinTee58/node-postman-generator" />
-</a>

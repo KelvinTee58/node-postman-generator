@@ -1,12 +1,10 @@
-# Postman Generator 使用文档
+# Node Postman Generator 使用文档
 
 ## 🧠 项目概述
 
-**Postman Generator** 是专为 Node.js 开发者打造的智能转换工具，通过一条 CLI 指令自动完成以下工作：
+**Node Postman Generator** 是专为 Node.js 开发者打造的智能转换工具，通过一条 CLI 指令自动完成以下工作：
 
 🔄 Express 路由 → 📦 Postman 集合 → 🚀 一键调试
-
-如果你觉得这个项目对你有帮助，希望你能贡献一个 [star⭐](https://github.com/KelvinTee58/node-postman-generator)
 
 ## ✨ 核心优势
 
@@ -242,9 +240,3 @@ A: 请检查：
 - 📧 **技术支持**：[GitHub](https://github.com/KelvinTee58/node-postman-generator)
 - 🐛 **问题反馈**：https://github.com/KelvinTee58/node-postman-generator/issues
 - 📜 **更新日志**：参见 CHANGELOG.md
-
-## 贡献板
-
-<a href="https://github.com/KelvinTee58/node-postman-generator/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=KelvinTee58/node-postman-generator" />
-</a>
