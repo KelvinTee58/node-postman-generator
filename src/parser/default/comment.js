@@ -40,7 +40,7 @@ function parseComment(comment) {
         let isOptional = !!match[2];
 
         meta.params.push({
-          in: 'query',
+          in: 'path',
           name: paramName,
           type: paramType,
           description: paramDescription,
@@ -49,11 +49,9 @@ function parseComment(comment) {
         });
       }
     }
-
-
     // @apiParamGroup [[{String} name Description],[{String} name Description]]
     // @apiParamGroup [[{String} [name=defaultValue] Description],[{String} name Description]]
-    if (line.startsWith('@apiParamGroup ')) {
+    else if (line.startsWith('@apiParamGroup ')) {
       const paramsGroupStr = line.replace(/@apiParamGroup\s+/, "").trim();
       const paramGroups = paramsGroupStr.slice(2, -2).split('],[');
 
@@ -68,24 +66,83 @@ function parseComment(comment) {
             let paramDescription = paramMatch[5];
             let isOptional = !!paramMatch[2];
 
-            let paramIn = 'query'; // 默认参数位置
-            if (meta.path && meta.path.includes(`:${paramName}`)) {
-              paramIn = 'path';
-            }
-
             meta.params.push({
-              in: paramIn,
+              in: 'path',
               name: paramName,
               type: paramType,
               description: paramDescription,
               defaultValue: paramDefaultValue, // 添加默认值
               optional: isOptional // 添加 optional 属性
             });
+          } else {
+            // Optional: Add logging for invalid format within the group
+            console.warn(`[Comment Parser] Invalid format in @apiParamGroup: "${paramDefStr}"`);
           }
+        });
+      } else {
+        // Optional: Add logging for invalid @apiQueryGroup format
+        console.warn(`[Comment Parser] Invalid @apiParamGroup format (missing [[...]]): "${line}"`);
+      }
+    }
+
+    // @apiQuery {Number} name Description
+    // @apiQuery {Number} [name=defaultValue] Description
+    // @apiQuery {String} [name] Description
+    if (line.startsWith('@apiQuery ')) {
+      const match = line.match(/@apiQuery\s+{(\w+)}\s+(?:\[(\w+)(?:=(\S+))?\]|(\S+))\s+(.*)/);
+      if (match) {
+        let paramType = match[1];
+        let paramName = match[2] || match[4]; // [name=defaultValue] or name
+        let paramDefaultValue = match[3]; // defaultValue
+        let paramDescription = match[5] || ''; // Handle empty description
+        let isOptional = !!match[2]; // Check for brackets []
+
+        meta.params.push({
+          in: 'query',
+          name: paramName,
+          type: paramType,
+          description: paramDescription,
+          defaultValue: paramDefaultValue,
+          optional: isOptional
         });
       }
     }
 
+    // @apiQueryGroup [[{String} name Description],[{String} [name=defaultValue] Description]]
+    else if (line.startsWith('@apiQueryGroup ')) {
+      const queryGroupStr = line.replace(/@apiQueryGroup\s+/, "").trim();
+      const paramGroups = queryGroupStr.slice(2, -2).split('],[');
+
+      if (paramGroups) {
+        paramGroups.forEach(paramDefStr => {
+          // 改进的正则表达式，处理可选参数和默认值
+          const paramMatch = paramDefStr.match(/{(\w+)}\s+(?:\[(\w+)(?:=(\S+))?\]|(\S+))\s+(.*)/);
+          if (paramMatch) {
+            let paramType = paramMatch[1];
+            let paramName = paramMatch[2] || paramMatch[4];
+            let paramDefaultValue = paramMatch[3];
+            let paramDescription = paramMatch[5];
+            let isOptional = !!paramMatch[2];
+
+            meta.params.push({
+              in: 'query',
+              name: paramName,
+              type: paramType,
+              description: paramDescription,
+              defaultValue: paramDefaultValue, // 添加默认值
+              optional: isOptional // 添加 optional 属性
+            });
+          } else {
+            // Optional: Add logging for invalid format within the group
+            console.warn(`[Comment Parser] Invalid format in @apiQueryGroup: "${paramDefStr}"`);
+          }
+        });
+      }
+      else {
+        // Optional: Add logging for invalid @apiQueryGroup format
+        console.warn(`[Comment Parser] Invalid @apiQueryGroup format (missing [[...]]): "${line}"`);
+      }
+    }
 
     // @apiHeader {String} Authorization Token description
     if (line.startsWith('@apiHeader')) {
@@ -122,7 +179,15 @@ function parseComment(comment) {
               optional: isOptional
             });
           }
+          else {
+            // Optional: Add logging for invalid format within the group
+            console.warn(`[Comment Parser] Invalid format in @apiBody: "${paramDefStr}"`);
+          }
         });
+      }
+      else {
+        // Optional: Add logging for invalid @apiQueryGroup format
+        console.warn(`[Comment Parser] Invalid @apiBody format (missing [[...]]): "${line}"`);
       }
     }
 
@@ -138,7 +203,6 @@ function parseComment(comment) {
     }
 
   });
-
   return meta;
 }
 

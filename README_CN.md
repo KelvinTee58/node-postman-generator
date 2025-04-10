@@ -10,8 +10,9 @@
 
 - **全自动转换** - 精准识别路由文件中的 app.get/post/put/delete 等配置
 - **参数智能映射**
-  - ✅ 路径参数 /users/:id → Postman 变量 {{id}}
+  - ✅ 路径参数 /users/:id → Postman 变量 {{id}}或者根据设置的 faker 数据
   - ✅ 查询参数 ?page=1 → Postman Query 面板自动填充
+  - ✅ 请求体参数 存储在 body 中 → Postman Body 面板中填充
 - **工程化支持**
   - 🧩 支持多路由文件批量处理
   - 📁 输出标准 Postman v2.1 格式
@@ -48,18 +49,52 @@ npx postman-generator -i ./routes -o ./postman/collection2025.json
 | -o, --output <path>  | 输出文件路径  | ./postman/collection.json |
 | -b, --base-url <url> | 基础 URL 变量 | {{base_url}}              |
 
+## ℹ️ 支持的 Node.js 框架
+
+| 名称    | 是否支持 | 实际项目测试 |
+| ------- | -------- | ------------ |
+| Express | ✅       | ✅           |
+| Koa     | ✅       | ✅           |
+
 ## 📝 注释规范
 
 ### JSDoc 参考
 
-```
-@apiParam {Number} name Description
-@apiParam {Number} [name=defaultValue]
-@apiParam {String} [name] Description
+```javascript
+/**
+ * @apiParam {Number} name Description
+ * @apiParam {Number} [name=defaultValue]
+ * @apiParam {String} [name] Description
+ */
 
-@apiParamGroup [[{String} name Description],[{String} [name=defaultValue] Description],[{String} [name] Description]]
-@apiBody [[{String} [name=defaultValue] Description],[{String} name Description],[{String} [name] Description]]
+/**
+ * @apiParamGroup [[{String} name Description], [{String} [phone=defaultValue] Description], [{String} [sex] Description]]
+ */
 ```
+
+```javascript
+/**
+ * @apiQuery {Number} name Description
+ * @apiQuery {Number} [name=defaultValue]
+ * @apiQuery {String} [name] Description
+ */
+
+/**
+ * @apiQueryGroup [[{String} name Description], [{String} [phone=defaultValue] Description], [{String} [sex] Description]]
+ */
+```
+
+```javascript
+/**
+ * @apiBody [[{String} [name=defaultValue] Description], [{String} phone Description], [{String} [sex] Description]]
+ */
+```
+
+### 三种结构区别
+
+1. `name`: 使用的是 faker data 进行数据补充
+2. `[name=defaultValue]`:使用的是 defaultValue
+3. `[name]`: 强制为空(也不需要 faker data)
 
 ### 基础路由注释
 
@@ -71,6 +106,21 @@ npx postman-generator -i ./routes -o ./postman/collection2025.json
  * @apiBody [[{String} name 用户名],[{String} [phone=123456789] 手机号],[{String} [gender] 性别类型]]
  */
 router.get("/users", getUserList);
+```
+
+### 对于 apiParamGroup
+
+```javascript
+/**
+ * @api {get} /users 获取用户列表
+ * @apiGroup User
+ * @apiParam {Number} [page=1] 页面数
+ * @apiParamGroup [[{String} name 姓名], [{String} [phone=123321] 电话], [{String} [sex] 性别]]
+ * 路径参数将根据下方 URL 中的 /users/:name/:phone/:sex 依次进行替换（支持 faker/default/空值）
+ */
+router.get("/users/:name/:phone/:sex", getUserList);
+
+// 生成的路径示例：/users/fakerName/123321/{{sex}}
 ```
 
 ### 跳过路由生成
@@ -96,8 +146,8 @@ app.get("/health", healthCheck);
 ## 🛠 待实现高级功能
 
 1. 根据配置文件 (.postmancfg.json)进行配置
-2. 支持多种框架
-3. 自定义识别策略
+2. 自定义识别策略
+3. 支持其他 builder 可以支持其他软件的 Json 结构导入
 
 ## 📚 最佳实践
 
@@ -109,6 +159,7 @@ src/
 │   ├── user.js     # 用户相关路由
 │   ├── product.js  # 商品模块路由
 │   └── order.js    # 订单业务路由
+│   └── ...
 ```
 
 2. **生成文件示例**
@@ -136,13 +187,13 @@ src/
 
 A: 请检查：
 
-1. 目前只测试了 Express 框架
-2. 是否添加了@postman-skip 标记
+1. 目前只测试了 Express,Koa 框架，或者使用 default 识别逻辑进行识别
+2. 是否添加了`@postman-skip` 标记
 3. 路由注释是否符合规范
 
-### Q2: 支持哪些框架？
+### Q2: 支持其他项目?
 
-- Express
+- 需要支持其他项目可通过联系开发者或者 `Pull Request` 等待管理员通过
 
 ## 🆒 如何支持其他框架
 

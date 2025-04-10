@@ -10,8 +10,9 @@
 
 - **Fully Automated Conversion** - Accurately identifies route configurations like app.get/post/put/delete
 - **Intelligent Parameter Mapping**
-  - ✅ Path parameters /users/:id → Postman variables {{id}}
+  - ✅ Path parameters /users/:id → Postman variables {{id}} or use faker data if configured
   - ✅ Query parameters ?page=1 → Auto-populates in Postman Query panel
+  - ✅ Body parameters → Auto-fills Postman Body panel
 - **Engineering Support**
   - 🧩 Batch processing of multiple route files
   - 📁 Outputs standard Postman v2.1 format
@@ -48,18 +49,52 @@ npx postman-generator -i ./routes -o ./postman/collection2025.json
 | -o, --output <path>  | Output file path      | ./postman/collection.json |
 | -b, --base-url <url> | Base URL variable     | {{base_url}}              |
 
+## ℹ️ Supported Node.js Frameworks
+
+| Name    | Supported | Production Tested |
+| ------- | --------- | ----------------- |
+| Express | ✅        | ✅                |
+| Koa     | ✅        | ✅                |
+
 ## 📝 Annotation Standards
 
 ### JSDoc Reference
 
-```
-@apiParam {Number} name Description
-@apiParam {Number} [name=defaultValue]
-@apiParam {String} [name] Description
+```javascript
+/**
+ * @apiParam {Number} name Description
+ * @apiParam {Number} [name=defaultValue]
+ * @apiParam {String} [name] Description
+ */
 
-@apiParamGroup [[{String} name Description],[{String} [name=defaultValue] Description],[{String} [name] Description]]
-@apiBody [[{String} [name=defaultValue] Description],[{String} name Description],[{String} [name] Description]]
+/**
+ * @apiParamGroup [[{String} name Description], [{String} [phone=defaultValue] Description], [{String} [sex] Description]]
+ */
 ```
+
+```javascript
+/**
+ * @apiQuery {Number} name Description
+ * @apiQuery {Number} [name=defaultValue]
+ * @apiQuery {String} [name] Description
+ */
+
+/**
+ * @apiQueryGroup [[{String} name Description], [{String} [phone=defaultValue] Description], [{String} [sex] Description]]
+ */
+```
+
+```javascript
+/**
+ * @apiBody [[{String} [name=defaultValue] Description], [{String} phone Description], [{String} [sex] Description]]
+ */
+```
+
+### Parameter Format Differences
+
+1. `name`: Value generated using faker data
+2. `[name=defaultValue]`: Uses defaultValue
+3. `[name]`: Forced to be empty (no faker used)
 
 ### Basic Route Annotation
 
@@ -71,6 +106,21 @@ npx postman-generator -i ./routes -o ./postman/collection2025.json
  * @apiBody [[{String} name username],[{String} [phone=123456789] phoneNumber],[{String} [gender] genderType]]
  */
 router.get("/users", getUserList);
+```
+
+### About apiParamGroup
+
+```javascript
+/**
+ * @api {get} /users Get user list
+ * @apiGroup User
+ * @apiParam {Number} [page=1] Page number
+ * @apiParamGroup [[{String} name FullName], [{String} [phone=123321] Phone], [{String} [sex] Gender]]
+ * Path parameters will be replaced in order according to the URL below: /users/:name/:phone/:sex (supports faker/default/empty)
+ */
+router.get("/users/:name/:phone/:sex", getUserList);
+
+// Example generated path: /users/fakerName/123321/{{sex}}
 ```
 
 ### Skip Route Generation
@@ -96,8 +146,8 @@ app.get("/health", healthCheck);
 ## 🛠 Pending Advanced Features
 
 1. Configuration via .postmancfg.json
-2. Support for multiple frameworks
-3. Custom recognition strategies
+2. Custom recognition strategies
+3. Support for additional builders to generate JSON for other tools
 
 ## 📚 Best Practices
 
@@ -109,6 +159,7 @@ src/
 │   ├── user.js
 │   ├── product.js
 │   └── order.js
+│   └── ...
 ```
 
 2. **Generated File Example**
@@ -136,13 +187,13 @@ src/
 
 A: Verify:
 
-1. Currently only tested with Express
-2. Presence of @postman-skip tags
-3. Route annotation compliance
+1. Currently only Express and Koa frameworks have been tested, or ensure the default recognition logic applies to your code
+2. Make sure no `@postman-skip` tags are present
+3. Ensure your route comments follow the required JSDoc format
 
-### Q2: Supported frameworks?
+### Q2: Can I use this with other frameworks or projects?
 
-- Express
+A: You can submit a feature request or open a `Pull Request` for support in other environments.
 
 ## 🛠 Framework Adaptation Guide
 

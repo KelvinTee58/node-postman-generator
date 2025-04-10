@@ -27,7 +27,7 @@ router.get('/postman_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx_skip', (req, res) => {
  * @apiGroup user
  * @apiParam {String} name 用户名
  */
-router.post('/paramsTestDefault', (req, res) => {
+router.post('/paramsTestDefault/:name', (req, res) => {
   res.status(201).json({ message: 'User created' });
 });
 
@@ -37,7 +37,7 @@ router.post('/paramsTestDefault', (req, res) => {
  * @apiGroup user
  * @apiParam {String} [name=Mike] 用户名
  */
-router.post('/paramsTestHasDefaultValue', (req, res) => {
+router.post('/paramsTestHasDefaultValue/:name', (req, res) => {
   res.status(201).json({ message: 'User created' });
 });
 
@@ -47,7 +47,7 @@ router.post('/paramsTestHasDefaultValue', (req, res) => {
  * @apiGroup user
  * @apiParam {String} [name] 用户名
  */
-router.post('/paramsTestNotDefaultValue', (req, res) => {
+router.post('/paramsTestNotDefaultValue/:name', (req, res) => {
   res.status(201).json({ message: 'User created' });
 });
 
@@ -57,7 +57,7 @@ router.post('/paramsTestNotDefaultValue', (req, res) => {
  * @apiGroup user
  * @apiParamGroup [[{String} name 用户名],[{String} [phone=123456789] 手机号],[{String} [sex] 性别]]
  */
-router.post('/paramsGroupTest', (req, res) => {
+router.post('/paramsGroupTest/:name/:phone/:sex', (req, res) => {
   res.status(201).json({ message: 'User created' });
 });
 
