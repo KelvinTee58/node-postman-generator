@@ -1,4 +1,4 @@
-# Postman Generator 使用文档 | [English](README.md)
+# Postman Generator 使用文档
 
 ## 🧠 项目概述
 
@@ -24,13 +24,13 @@
 ### 全局安装（推荐）
 
 ```bash
-npm install -g postman-generator
+npm install -g node-postman-generator
 ```
 
 ### 项目内安装
 
 ```bash
-npm install postman-generator --save-dev
+npm install node-postman-generator --save-dev
 ```
 
 ## 🚀 快速开始
