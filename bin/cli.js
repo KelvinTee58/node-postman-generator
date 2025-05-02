@@ -28,9 +28,9 @@ program
 
   .addHelpText('after', `
   Examples:
-    $ npx node-postman-genius -i ./routes -o ./postman/collection.json
-    $ npx node-postman-genius --input ./routes --output ./collection.json --base-url http://localhost:3000
-    $ npx node-postman-genius -i ./routes -o ./collection.json -path ./config.json
+    $ npx node-postman-generator -i ./routes -o ./postman/collection.json
+    $ npx node-postman-generator --input ./routes --output ./collection.json --base-url http://localhost:3000
+    $ npx node-postman-generator -i ./routes -o ./collection.json -path ./config.json
 
   Config file example (config.json):
     {
