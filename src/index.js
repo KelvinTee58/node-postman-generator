@@ -18,7 +18,6 @@ class PostmanGenerator {
     if (builder) {
       return new builder(this.options)
     } else {
-      // console.error('❌ 不支持该builder');
       console.error('❌ Unsupported builder version'); // 不支持该builder
     }
   }
@@ -26,7 +25,6 @@ class PostmanGenerator {
 
   async generate() {
     try {
-      // console.log('🚀 开始生成Postman集合...');
       console.log('🚀 Starting Postman collection generation...');
       // 创建输出目录
       fs.mkdirSync(path.dirname(this.options.outputFile), { recursive: true });
@@ -36,12 +34,9 @@ class PostmanGenerator {
       const builder = this.buildClass();
       const collection = builder.buildCollection(routes)
       fs.writeFileSync(this.options.outputFile, JSON.stringify(collection, null, 2));
-      // console.log(`✅ 成功生成Postman集合至：${this.options.outputFile}`);
-      // console.log(`📊 共生成 ${routes.size} 个API端点`); ``
       console.log(`✅ Successfully generated Postman collection to: ${this.options.outputFile}`); // 成功提示
       console.log(`📊 Generated ${routes.size} API endpoints`); // 统计信息
     } catch (error) {
-      // console.error('❌ 生成失败:', error.message);
       console.error('❌ Generation failed:', error.message); // 错误提示 生成失败
       process.exit(1);
     }

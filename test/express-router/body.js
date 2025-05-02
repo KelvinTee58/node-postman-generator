@@ -14,10 +14,14 @@ router.get('/order', (req, res) => {
 });
 
 /**
- * @api {post} /orderBodyTest
+ * @api {post} /orderBodyTest orderBodyTest 默认形式
  * @apiName BodyTest
  * @apiGroup order
- * @apiBody [[{String} name 用户名],[{String} [phone=123456789] 手机号],[{String} [sex] 性别]]
+ * @apiBody [
+ *   {"type": "String", "name": "name", "description": "用户名"},
+ *  {"type": "String", "name": "phone", "description": "手机号","defaultValue": "123456789"},
+ *  {"type": "String", "name": "sex", "description": "性别"}
+ *]
  */
 router.post('/orderBodyTest', (req, res) => {
   res.status(201).json({ message: 'User created' });

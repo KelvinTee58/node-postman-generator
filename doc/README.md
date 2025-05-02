@@ -47,7 +47,7 @@ npx postman-generator -i ./routes -o ./postman/collection2025.json
 | -------------------- | --------------------- | ------------------------- |
 | -i, --input <path>   | Route files directory | ./routes                  |
 | -o, --output <path>  | Output file path      | ./postman/collection.json |
-| -b, --base-url <url> | Base URL variable     | {{base_url}}              |
+| -u, --base-url <url> | Base URL variable     | {{base_url}}              |
 
 ## ℹ️ Supported Node.js Frameworks
 
@@ -68,7 +68,10 @@ npx postman-generator -i ./routes -o ./postman/collection2025.json
  */
 
 /**
- * @apiParamGroup [[{String} name Description], [{String} [phone=defaultValue] Description], [{String} [sex] Description]]
+ * @apiParamGroup [
+ *   {"type": "String", "name": "username", "description": "Username"},
+ *   {"type": "Number", "name": "age", "description": "User age"}
+ * ]
  */
 ```
 
@@ -80,13 +83,19 @@ npx postman-generator -i ./routes -o ./postman/collection2025.json
  */
 
 /**
- * @apiQueryGroup [[{String} name Description], [{String} [phone=defaultValue] Description], [{String} [sex] Description]]
+ * @apiQueryGroup [
+ *   {"type": "String", "name": "username", "description": "Username"},
+ *   {"type": "Number", "name": "age", "description": "User age", "optional": true}
+ * ]
  */
 ```
 
 ```javascript
 /**
- * @apiBody [[{String} [name=defaultValue] Description], [{String} phone Description], [{String} [sex] Description]]
+ * @apiBody [
+ *   {"type": "String", "name": "username", "description": "Username"},
+ *   {"type": "Number", "name": "age", "description": "User age"}
+ * ]
  */
 ```
 
@@ -103,7 +112,6 @@ npx postman-generator -i ./routes -o ./postman/collection2025.json
  * @api {get} /users Get user list
  * @apiGroup User
  * @apiParam {Number} [page=1] Page number
- * @apiBody [[{String} name username],[{String} [phone=123456789] phoneNumber],[{String} [gender] genderType]]
  */
 router.get("/users", getUserList);
 ```
@@ -115,12 +123,13 @@ router.get("/users", getUserList);
  * @api {get} /users Get user list
  * @apiGroup User
  * @apiParam {Number} [page=1] Page number
- * @apiParamGroup [[{String} name FullName], [{String} [phone=123321] Phone], [{String} [sex] Gender]]
+ * @apiParamGroup [
+ *   {"type": "String", "name": "username", "description": "Username"},
+ *   {"type": "Number", "name": "phone", "description": "User phone"}
+ * ]
  * Path parameters will be replaced in order according to the URL below: /users/:name/:phone/:sex (supports faker/default/empty)
  */
 router.get("/users/:name/:phone/:sex", getUserList);
-
-// Example generated path: /users/fakerName/123321/{{sex}}
 ```
 
 ### Skip Route Generation

@@ -1,6 +1,6 @@
 {
   "name": "node-postman-generator",
-  "version": "2.7.0",
+  "version": "2.8.0",
   "description": "📦 CLI tool that automatically converts Express.js routes to Postman collections - handles path/query/body params, and generates ready-to-import JSON with route config.",
   "main": "src/index.js",
   "bin": {
@@ -8,12 +8,13 @@
     "postman-generator-test": "./bin/cli-new.js"
   },
   "scripts": {
+    "link": "npm link",
     "start": "node bin/cli.js",
-    "test-old": "node bin/cli_1.js -i ./test/routes -o ./test/generator.test.json",
-    "test-express": "node bin/cli.js -i ./test/express-router -o ./test/generator.test.json -b {{url}}",
-    "test-abc": "node bin/cli.js -i ./test/abc-router -o ./test/generator.test.json -b {{url}}",
-    "test-koa": "node bin/cli.js -i ./test/koa-router -o ./test/generator.test.json -b {{url}}",
-    "test": "node bin/cli.js -i ./test/routes -o ./test/generator.test.json -b {{url}}",
+    "help": "node bin/cli.js --help",
+    "test": "node bin/cli.js -i ./test/express-router -o ./test/generator.test.json -u {{base_url}}",
+    "test-express": "node bin/cli.js -i ./test/express-router -o ./test/generator.test.json -u {{base_url}}",
+    "test-abc": "node bin/cli.js -i ./test/abc-router -o ./test/generator.test.json -u {{base_url}}",
+    "test-koa": "node bin/cli.js -i ./test/koa-router -o ./test/generator.test.json -u {{base_url}}",
     "prepare": "chmod +x ./bin/cli.js"
   },
   "dependencies": {

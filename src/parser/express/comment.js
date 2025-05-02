@@ -6,11 +6,142 @@ function parseComment(comment) {
     params: [],
     headers: [],
     body: [],
+    method: '',
     skip: false
   };
 
+  let collectingGroup = {
+    active: false,
+    type: '',
+    content: []
+  };
+
+  const GROUP_CONFIGS = {
+    '@apiQueryGroup': {
+      type: 'query',
+      target: 'params'
+    },
+    '@apiParamGroup': {
+      type: 'param',
+      target: 'params'
+    },
+    '@apiBody': {
+      type: 'body',
+      target: 'body'
+    }
+  };
+
+
+  // 处理单行group内容的通用函数
+
+  // Single-line writing
+  /**
+   * @apiParamGroup [{"type": "String", "name": "username", "description": "Username"}]
+   */
+
+  //  multi-line writing
+  /**
+   * @apiParamGroup [
+   *   {"type": "String", "name": "username", "description": "Username"},
+   *   {"type": "Number", "name": "age", "description": "User age", "optional": true}
+   * ]
+   */
+  const processGroupContent = (content, groupConfig) => {
+    // Check if using old format
+    if (content.startsWith('[[') && content.endsWith(']]')) {
+      console.warn(`[Comment Parser] Deprecated: The [[]] format will be removed in version 2.8.0.
+      Please use the new JSON array format instead:
+      
+      Example:
+      @apiParamGroup [
+        {"type": "String", "name": "username", "description": "Username"},
+        {"type": "Number", "name": "age", "description": "User age", "optional": true, "defaultValue": 18}
+      ]
+      
+      Note: If you need to use the old [[]] format, please use version < 2.8.0
+      CHANGELOG guide: https://github.com/KelvinTee58/node-postman-generator/blob/main/doc/CHANGELOG.md#280`);
+      return;
+    }
+
+    try {
+      // Try to parse JSON array
+      let params;
+      try {
+        params = JSON.parse(content);
+        if (!Array.isArray(params)) {
+          throw new Error('Parameter format must be an array');
+        }
+      } catch (e) {
+        console.warn(`[Comment Parser] Invalid JSON format in ${groupConfig.type}: "${content}"`);
+        return;
+      }
+
+      params.forEach(param => {
+        if (!param.type || !param.name) {
+          console.warn('[Comment Parser] Missing required fields: type or name');
+          return;
+        }
+        // console.log('param.defaultValue :>> ', param.defaultValue);
+
+        const processedParam = {
+          // 根据类型设置 in
+          in: groupConfig.type === 'body' ? 'body' :
+            groupConfig.type === 'query' ? 'query' : 'path',
+          name: param.name,
+          type: param.type,
+          description: param.description || '',
+          defaultValue: param.defaultValue,
+          optional: param.optional || false
+        };
+
+        // 根据配置决定添加到哪个目标数组
+        meta[groupConfig.target].push(processedParam);
+      });
+    } catch (error) {
+      console.warn(`[Comment Parser] Error processing ${groupConfig.type}: ${error.message}`);
+    }
+  };
+
+
   (comment || '').split('\n').forEach(line => {
     line = line.replace(/^\s*\*\s?/, '').trim();
+
+    // 修改多行内容收集的判断条件
+    if (collectingGroup.active) {
+      if (line.includes(']')) { // 改为检测 ] 而不是 ]]
+        collectingGroup.content.push(line);
+        const fullContent = collectingGroup.content.join('\n') // 改用 \n 连接
+          .replace(/\/\*\*|\*\//g, '') // 移除注释标记
+          .replace(/^\s*\*\s?/gm, '')  // 移除每行开头的星号
+          .trim();
+        processGroupContent(fullContent, GROUP_CONFIGS[collectingGroup.type]); // 使用 存储多行结束调用processGroupContent
+        collectingGroup = { active: false, type: '', content: [] };
+      } else {
+        collectingGroup.content.push(line);
+      }
+      return;
+    }
+
+    // 检查是否是group开始
+    const groupType = Object.keys(GROUP_CONFIGS).find(prefix => line.startsWith(prefix));
+    if (groupType) {
+      const content = line.replace(new RegExp(`${groupType}\\s+`), '').trim();
+      const groupConfig = GROUP_CONFIGS[groupType];
+
+      // 如果是完整的单行 JSON
+      if (content.startsWith('[') && content.endsWith(']')) {
+        processGroupContent(content, groupConfig);
+      } else if (content.startsWith('[')) {
+        // 开始多行收集
+        collectingGroup = {
+          active: true,
+          type: groupType,
+          content: [content]
+        };
+      }
+      return;
+    }
+
 
     // 跳过标记检测
     if (line === '@postman-skip') {
@@ -49,41 +180,6 @@ function parseComment(comment) {
         });
       }
     }
-    // @apiParamGroup [[{String} name Description],[{String} name Description]]
-    // @apiParamGroup [[{String} [name=defaultValue] Description],[{String} name Description]]
-    else if (line.startsWith('@apiParamGroup ')) {
-      const paramsGroupStr = line.replace(/@apiParamGroup\s+/, "").trim();
-      const paramGroups = paramsGroupStr.slice(2, -2).split('],[');
-
-      if (paramGroups) {
-        paramGroups.forEach(paramDefStr => {
-          // 改进的正则表达式，处理可选参数和默认值
-          const paramMatch = paramDefStr.match(/{(\w+)}\s+(?:\[(\w+)(?:=(\S+))?\]|(\S+))\s+(.*)/);
-          if (paramMatch) {
-            let paramType = paramMatch[1];
-            let paramName = paramMatch[2] || paramMatch[4];
-            let paramDefaultValue = paramMatch[3];
-            let paramDescription = paramMatch[5];
-            let isOptional = !!paramMatch[2];
-
-            meta.params.push({
-              in: 'path',
-              name: paramName,
-              type: paramType,
-              description: paramDescription,
-              defaultValue: paramDefaultValue, // 添加默认值
-              optional: isOptional // 添加 optional 属性
-            });
-          } else {
-            // Optional: Add logging for invalid format within the group
-            console.warn(`[Comment Parser] Invalid format in @apiParamGroup: "${paramDefStr}"`);
-          }
-        });
-      } else {
-        // Optional: Add logging for invalid @apiQueryGroup format
-        console.warn(`[Comment Parser] Invalid @apiParamGroup format (missing [[...]]): "${line}"`);
-      }
-    }
 
     // @apiQuery {Number} name Description
     // @apiQuery {Number} [name=defaultValue] Description
@@ -108,41 +204,6 @@ function parseComment(comment) {
       }
     }
 
-    // @apiQueryGroup [[{String} name Description],[{String} [name=defaultValue] Description]]
-    else if (line.startsWith('@apiQueryGroup ')) {
-      const queryGroupStr = line.replace(/@apiQueryGroup\s+/, "").trim();
-      const paramGroups = queryGroupStr.slice(2, -2).split('],[');
-
-      if (paramGroups) {
-        paramGroups.forEach(paramDefStr => {
-          // 改进的正则表达式，处理可选参数和默认值
-          const paramMatch = paramDefStr.match(/{(\w+)}\s+(?:\[(\w+)(?:=(\S+))?\]|(\S+))\s+(.*)/);
-          if (paramMatch) {
-            let paramType = paramMatch[1];
-            let paramName = paramMatch[2] || paramMatch[4];
-            let paramDefaultValue = paramMatch[3];
-            let paramDescription = paramMatch[5];
-            let isOptional = !!paramMatch[2];
-
-            meta.params.push({
-              in: 'query',
-              name: paramName,
-              type: paramType,
-              description: paramDescription,
-              defaultValue: paramDefaultValue, // 添加默认值
-              optional: isOptional // 添加 optional 属性
-            });
-          } else {
-            // Optional: Add logging for invalid format within the group
-            console.warn(`[Comment Parser] Invalid format in @apiQueryGroup: "${paramDefStr}"`);
-          }
-        });
-      }
-      else {
-        // Optional: Add logging for invalid @apiQueryGroup format
-        console.warn(`[Comment Parser] Invalid @apiQueryGroup format (missing [[...]]): "${line}"`);
-      }
-    }
 
     // @apiHeader {String} Authorization Token description
     if (line.startsWith('@apiHeader')) {
@@ -153,41 +214,6 @@ function parseComment(comment) {
           type: match[1],
           description: match[3]
         });
-      }
-    }
-
-    // @apiBody [[{String} [name=defaultValue] Description],[{String} name Description],[{String} [name] Description]]
-    if (line.startsWith('@apiBody')) {
-      const bodyParamsStr = line.replace(/@apiBody\s+/, "").trim();
-      const bodyParams = bodyParamsStr.slice(2, -2).split('],[');
-
-      if (bodyParams && bodyParams.length > 0) { // 确保有 body 参数定义
-        bodyParams.forEach(paramDefStr => {
-          const paramMatch = paramDefStr.match(/{(\w+)}\s+(?:\[(\w+)(?:=(\S+))?\]|(\S+))\s+(.*)/);
-          if (paramMatch) {
-            let paramType = paramMatch[1];
-            let paramName = paramMatch[2] || paramMatch[4];
-            let paramDefaultValue = paramMatch[3];
-            let paramDescription = paramMatch[5];
-            let isOptional = !!paramMatch[2];
-
-            meta.body.push({ // 注意这里使用 meta.body
-              name: paramName,
-              type: paramType,
-              description: paramDescription,
-              defaultValue: paramDefaultValue,
-              optional: isOptional
-            });
-          }
-          else {
-            // Optional: Add logging for invalid format within the group
-            console.warn(`[Comment Parser] Invalid format in @apiBody: "${paramDefStr}"`);
-          }
-        });
-      }
-      else {
-        // Optional: Add logging for invalid @apiQueryGroup format
-        console.warn(`[Comment Parser] Invalid @apiBody format (missing [[...]]): "${line}"`);
       }
     }
 
@@ -203,7 +229,6 @@ function parseComment(comment) {
     }
 
   });
-
   return meta;
 }
 

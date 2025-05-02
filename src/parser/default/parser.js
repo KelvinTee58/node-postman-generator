@@ -55,7 +55,6 @@ class ExpressParser {
         }
       });
     } catch (e) {
-      // console.error('AST解析失败:', e.message);
       console.error('❌ AST parsing failed:', e.message); // AST解析失败
       return [];
     }

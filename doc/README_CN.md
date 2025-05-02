@@ -47,7 +47,7 @@ npx postman-generator -i ./routes -o ./postman/collection2025.json
 | -------------------- | ------------- | ------------------------- |
 | -i, --input <path>   | 路由文件目录  | ./routes                  |
 | -o, --output <path>  | 输出文件路径  | ./postman/collection.json |
-| -b, --base-url <url> | 基础 URL 变量 | {{base_url}}              |
+| -u, --base-url <url> | 基础 URL 变量 | {{base_url}}              |
 
 ## ℹ️ 支持的 Node.js 框架
 
@@ -68,7 +68,10 @@ npx postman-generator -i ./routes -o ./postman/collection2025.json
  */
 
 /**
- * @apiParamGroup [[{String} name Description], [{String} [phone=defaultValue] Description], [{String} [sex] Description]]
+ * @apiParamGroup [
+ *   {"type": "String", "name": "username", "description": "Username"},
+ *   {"type": "Number", "name": "age", "description": "User age"}
+ * ]
  */
 ```
 
@@ -80,13 +83,19 @@ npx postman-generator -i ./routes -o ./postman/collection2025.json
  */
 
 /**
- * @apiQueryGroup [[{String} name Description], [{String} [phone=defaultValue] Description], [{String} [sex] Description]]
+ * @apiQueryGroup [
+ *   {"type": "String", "name": "username", "description": "Username"},
+ *   {"type": "Number", "name": "age", "description": "User age", "optional": true}
+ * ]
  */
 ```
 
 ```javascript
 /**
- * @apiBody [[{String} [name=defaultValue] Description], [{String} phone Description], [{String} [sex] Description]]
+ * @apiBody [
+ *   {"type": "String", "name": "username", "description": "Username"},
+ *   {"type": "Number", "name": "age", "description": "User age"}
+ * ]
  */
 ```
 
@@ -103,7 +112,6 @@ npx postman-generator -i ./routes -o ./postman/collection2025.json
  * @api {get} /users 获取用户列表
  * @apiGroup User
  * @apiParam {Number} [page=1] 页面数
- * @apiBody [[{String} name 用户名],[{String} [phone=123456789] 手机号],[{String} [gender] 性别类型]]
  */
 router.get("/users", getUserList);
 ```
@@ -115,12 +123,13 @@ router.get("/users", getUserList);
  * @api {get} /users 获取用户列表
  * @apiGroup User
  * @apiParam {Number} [page=1] 页面数
- * @apiParamGroup [[{String} name 姓名], [{String} [phone=123321] 电话], [{String} [sex] 性别]]
- * 路径参数将根据下方 URL 中的 /users/:name/:phone/:sex 依次进行替换（支持 faker/default/空值）
+ * @apiParamGroup [
+ *   {"type": "String", "name": "username", "description": "Username"},
+ *   {"type": "Number", "name": "phone", "description": "User phone"}
+ * ]
+ * 路径参数将根据下方 URL 中的 /users/:username/:phone 依次进行替换（支持 faker/default/空值）
  */
-router.get("/users/:name/:phone/:sex", getUserList);
-
-// 生成的路径示例：/users/fakerName/123321/{{sex}}
+router.get("/users/:username/:phone", getUserList);
 ```
 
 ### 跳过路由生成

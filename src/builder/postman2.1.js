@@ -60,7 +60,7 @@ class Builder {
       if (segment.startsWith(':')) {
         const paramName = segment.slice(1);
         const paramInfo = pathParamsMap.get(paramName);
-        return paramInfo?.defaultValue ?? (pathParamsMap.has(paramName) ? `{{${paramName}}}` : segment);
+        return paramInfo?.defaultValue ?? (pathParamsMap.has(paramName) ? `{{${paramName}}}` : segment); // 如果是路径参数，使用默认值或 Postman 变量
       }
       return segment;
     }).join('/');
@@ -146,17 +146,18 @@ class Builder {
 
     // 分离路径参数和查询参数
     const pathParams = params.filter(p => p.in === 'path');
-    const queryParamsRaw = params.filter(p => p.in === 'query');
+
+
+    const queryParams = params.filter(p => p.in !== 'path'); // 所有非path参数都作为query参数
 
     // 处理查询参数和查询字符串
-    const queryParamsForPostman = this.generateQueryParams(queryParamsRaw);
-    const queryStringForRawUrl = this._buildQueryString(queryParamsForPostman);
-
+    const queryParamsForPostman = this.generateQueryParams(queryParams);  // 放在query中
+    const queryStringForRawUrl = this._buildQueryString(queryParamsForPostman); // query用于 url.raw
     // 构建请求体
-    const exampleBody = this.generateExampleBody(body);
-
+    const exampleBody = this.generateExampleBody(body); // 生成示例请求体
     // 构建 URL 各部分
-    const urlPathWithVars = this._buildUrlPathWithVariables(route.path, pathParams);
+    const urlPathWithVars = this._buildUrlPathWithVariables(route.path, pathParams); // parmas用于 url.raw
+
     const urlPathArray = this._buildUrlPathArray(route.path); // 用于 url.path
     const host = [`${this.options.baseUrl}`]; // host 通常是基础 URL
 
