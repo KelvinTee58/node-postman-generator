@@ -23,7 +23,7 @@ npm install node-postman-generator --save-dev
 ```
 
 ```bash
-npx postman-generator -i ./routes -o ./postman/collection.json
+npx node-postman-generator -i ./routes -o ./postman/collection.json
 ```
 
 ## 🧑‍🧑‍🧒‍🧒 Contributors
